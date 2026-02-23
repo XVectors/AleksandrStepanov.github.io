@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Stepanov - Personal Web-Page</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Aleksandr Stepanov</h1>
+                </div>
+                <nav class="nav-desktop">
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#about" class="nav-link">About Me</a>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                        <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" style="display: none;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    <a href="mailto:astep888@gmail.com" class="btn btn-primary">Email Me</a>
+                </nav>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="nav-mobile" id="nav-mobile">
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#about" class="nav-link">About Me</a>
+                <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
+                    <svg class="sun-icon-mobile" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <svg class="moon-icon-mobile" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" style="display: none;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+                <a href="mailto:astep888@gmail.com" class="btn btn-primary">Email Me</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Hello, I'm <span class="highlight">Aleksandr</span>
+                    </h1>
+                    <p class="hero-subtitle">UX/UI Design Student & Self-Taught Game Designer/Developer</p>
+                    <p class="hero-description">
+                        My journey started with game development: I spent years taking courses, prototyping mechanics, and designing levels. It taught me to think in systems — how small details shape the user’s experience, whether in a game menu or a mobile app.
+                        <br><br>Now I’m expanding into UI/UX design, studying how people interact with interfaces beyond games. This website is part of that learning process — I built it without templates to understand how code and design connect.
+                        <br><br>Interested in projects where logic meets creativity: from gameplay loops to intuitive interfaces. If you’re working on something in that space, let’s talk!
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="mailto:astep888@gmail.com" class="btn btn-secondary">Get In Touch</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-placeholder">
+                        <img src="images/me2.png" 
+                             alt="Your Name" class="profile-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects section" id="projects">
+        <div class="container">
+            <div class="projects-header">
+                <h2 class="section-title">My Projects</h2>
+                <div class="tab-switcher">
+                    <button class="tab-button active" data-tab="uxui">UX/UI Design</button>
+                    <button class="tab-button" data-tab="gamedev">Game Development</button>
+                   <!-- <button class="tab-button" data-tab="gamedesign">Game Design</button>   -->
+                </div>
+            </div>
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="about-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">
+                    Get to know more about my background, skills, and what drives my passion for design and development.
+                </p>
+            </div>
+            <div class="about-grid" id="about-grid">
+                <!-- About cards will be loaded here by JavaScript -->
+            </div>
+            <div class="about-cta">
+                <h3>Let's Work Together</h3>
+                <p>I'm always interested in new opportunities and exciting projects.</p>
+                <a href="mailto:astep888@gmail.com" class="btn btn-primary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p class="footer-copyright">© 2025 Aleksandr Stepanov. All rights reserved.</p>
+                     <!-- <p class="footer-description">
+                        Passionate about creating beautiful digital experiences and engaging interactive content.
+                    </p> -->
+                    <!-- Old Version Link -->
+                    <p class="footer-links">
+                        <a href="temp/index.html" class="footer-link">View Old Version</a>
+                    </p>
+                </div>
+                <div class="footer-contact">
+                    <!-- <p class="footer-email">
+                        <strong>Get in touch:</strong> astep888@gmail.com
+                    </p> -->
+                    <p class="footer-location">Based in Berlin, Germany</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

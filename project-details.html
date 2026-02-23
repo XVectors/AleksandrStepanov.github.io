@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - Personal Website</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles for project details page */
+        .project-hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 100px;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .project-category {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .project-content-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .project-image-large {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        .project-video-container {
+            width: 100%;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 соотношение сторон */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        [data-theme="dark"] .project-image-large,
+        [data-theme="dark"] .project-video-container {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .project-description {
+            background: var(--background-secondary);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] .project-description {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-description h2 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .project-description p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .project-info {
+            background: var(--background-secondary);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+
+        [data-theme="dark"] .project-info {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-info h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .info-item {
+            margin-bottom: 1rem;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-value {
+            color: var(--text-secondary);
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tech-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .back-button:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .project-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .project-title {
+                font-size: 2rem;
+            }
+            
+            .project-image-large {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Aleksandr Stepanov</h1>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                        <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" style="display: none;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    <a href="javascript:history.back();" class="back-button">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Back to Portfolio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="project-hero">
+                <div class="project-category" id="project-category">UX/UI Design</div>
+                <h1 class="project-title" id="project-title">Project Title</h1>
+                <div id="project-content-container" class="project-content-container">
+                    <!-- Здесь будет отображаться контент (изображение или видео) -->
+                </div>
+            </div>
+
+            <div class="project-content">
+                <div class="project-description">
+                    <h2>Project Overview</h2>
+                    <p id="project-overview">
+                        This is a detailed description of the project that will be loaded dynamically based on the selected project.
+                    </p>
+                    
+                    <h2>Key Features</h2>
+                    <div id="project-features">
+                        <p>• Feature 1: Description of the first key feature</p>
+                        <p>• Feature 2: Description of the second key feature</p>
+                        <p>• Feature 3: Description of the third key feature</p>
+                    </div>
+
+                    <h2>Challenges & Solutions</h2>
+                    <p id="project-challenges">
+                        Details about the challenges faced during the project and how they were solved.
+                    </p>
+                </div>
+
+                <div class="project-info">
+                    <h3>Project Details</h3>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Duration:</span>
+                        <span class="info-value" id="project-duration">3 months</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Role:</span>
+                        <span class="info-value" id="project-role">Lead Designer</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Team Size:</span>
+                        <span class="info-value" id="project-team">4 people</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Technologies:</span>
+                        <div class="tech-tags" id="project-tech">
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Adobe XD</span>
+                            <span class="tech-tag">Prototyping</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Project data (simplified version)
+        const projectData = {
+
+            'uxui-0': {
+                title: "Music player Mobile App",
+                category: "UX/UI Design",
+                content: {
+                    type: "image",
+                    src: "images/musify2.png"
+                },
+                overview: "A music streaming app with a focus on user experience and discoverability.",
+                features: [
+                    "Intuitive product discovery with advanced filtering",
+                    "Seamless checkout process with multiple payment options",
+                    "Personalized recommendations based on user behavior"
+                ],
+                challenges: "The main challenge was balancing feature richness with simplicity. We conducted multiple user testing sessions to refine the navigation flow.",
+                duration: "4 months",
+                role: "Lead UX/UI Designer",
+                team: "6 people",
+                tech: ["Figma", "Adobe XD", "Principle", "InVision"]
+            },
+
+            'uxui-1': {
+                title: "Checklist Mobile App",
+                category: "UX/UI Design",
+                image: "images/LoadoutApp.png",
+                overview: "Development of a comprehensive design system for a SaaS dashboard platform with reusable components and patterns.",
+                features: [
+                    "Modular component library with 50+ components",
+                    "Consistent design patterns and guidelines",
+                    "Dark and light theme support"
+                ],
+                challenges: "Creating a scalable system that could accommodate future features while maintaining consistency across different product teams.",
+                duration: "6 months",
+                role: "Senior Product Designer",
+                team: "8 people",
+                tech: ["Figma", "Storybook", "Design Tokens", "Zeplin"]
+            },
+
+            'uxui-2': {
+                title: "Banking App Redesign",
+                category: "UX/UI Design",
+                image: "https://via.placeholder.com/800x400/dc2626/ffffff?text=Banking+App+Details",
+                overview: "Complete redesign of a mobile banking application with focus on security, accessibility, and user trust.",
+                features: [
+                    "Biometric authentication (Face ID, Touch ID)",
+                    "Simplified money transfer flows",
+                    "Enhanced security indicators"
+                ],
+                challenges: "Balancing security requirements with user experience while ensuring accessibility for all users.",
+                duration: "5 months",
+                role: "UX Designer",
+                team: "10 people",
+                tech: ["Sketch", "Principle", "Marvel", "UserTesting"]
+            },
+
+            'gamedev-0': {
+                title: "Third Person Arena Shooter",
+                category: "Game Development",
+                content: {
+                    type: "youtube",
+                    src: "https://www.youtube.com/embed/-Y5nSAnQ7Kg?si=WiBZ771kdmMNOVeT"
+                },
+                overview: "T E X T",
+                features: [
+                    "20+ handcrafted levels with increasing difficulty",
+                    "Unique power-up system with 15 different abilities",
+                    "Advanced enemy AI with different behavior patterns"
+                ],
+                challenges: "Optimizing performance for different hardware configurations while maintaining the pixel-perfect aesthetic.",
+                duration: "8 months",
+                role: "Game Designer & Developer",
+                team: "3 people",
+                tech: ["Unreal Engine 5", "C++"]
+            },
+
+            'gamedev-1': {
+                title: "VR Puzzle Experience",
+                category: "Game Development",
+                
+                overview: "An immersive VR puzzle game designed for Oculus Quest where players solve 3D puzzles in beautiful environments.",
+                features: [
+                    "12 unique puzzle environments",
+                    "Intuitive hand tracking controls",
+                    "Physics-based puzzle mechanics"
+                ],
+                challenges: "Designing comfortable VR interactions that prevent motion sickness while maintaining engaging gameplay.",
+                duration: "10 months",
+                role: "VR Developer & Designer",
+                team: "4 people",
+                tech: ["Unity", "Oculus SDK", "Blender", "Wwise"]
+            },
+
+            'gamedev-2': {
+                title: "Mobile Strategy Game",
+                category: "Game Development",
+                image: "https://via.placeholder.com/800x400/0891b2/ffffff?text=Strategy+Game+Details",
+                overview: "A turn-based strategy game for mobile devices featuring multiplayer battles and resource management.",
+                features: [
+                    "Real-time multiplayer battles with matchmaking",
+                    "Deep resource management system",
+                    "50+ unique characters with progression trees"
+                ],
+                challenges: "Balancing gameplay for both casual and hardcore strategy players while maintaining server stability.",
+                duration: "12 months",
+                role: "Lead Game Developer",
+                team: "7 people",
+                tech: ["Unity", "C#", "Photon", "Firebase"]
+            },
+            
+            'gamedev-3': {
+                title: "Test Game",
+                category: "Game Development",
+                image: "images/CatUnity.png",
+                overview: "A turn-based strategy game for mobile devices featuring multiplayer battles and resource management.",
+                features: [
+                    "Real-time multiplayer battles with matchmaking",
+                    "Deep resource management system",
+                    "50+ unique characters with progression trees"
+                ],
+                challenges: "Balancing gameplay for both casual and hardcore strategy players while maintaining server stability.",
+                duration: "12 months",
+                role: "Lead Game Developer",
+                team: "7 people",
+                tech: ["Unity", "C#", "Photon", "Firebase"]
+            }
+        };
+
+        // Get project ID from URL
+        function getProjectId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('project') || 'uxui-0';
+        }
+
+        // Load project data
+        function loadProject() {
+            const projectId = getProjectId();
+            const project = projectData[projectId];
+            
+            if (!project) {
+                loadProjectData(projectData['uxui-0']);
+                return;
+            }
+            
+            loadProjectData(project);
+        }
+
+        function loadProjectData(project) {
+            document.getElementById('project-category').textContent = project.category;
+            document.getElementById('project-title').textContent = project.title;
+            
+            // Обработка контента в зависимости от его типа
+            const contentContainer = document.getElementById('project-content-container');
+            
+            if (project.content) {
+                if (project.content.type === 'youtube') {
+                    // Если это YouTube видео
+                    contentContainer.innerHTML = `
+                        <div class="project-video-container">
+                            <iframe src="${project.content.src}" 
+                                    title="${project.title}" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen></iframe>
+                        </div>
+                    `;
+                } else if (project.content.type === 'image') {
+                    // Если это изображение
+                    contentContainer.innerHTML = `
+                        <img src="${project.content.src}" alt="${project.title}" class="project-image-large">
+                    `;
+                }
+            } else {
+                // Если контент не указан, скрываем контейнер
+                contentContainer.style.display = 'none';
+            }
+            
+            document.getElementById('project-overview').textContent = project.overview;
+            
+            const featuresHtml = project.features.map(feature => `<p>• ${feature}</p>`).join('');
+            document.getElementById('project-features').innerHTML = featuresHtml;
+            
+            document.getElementById('project-challenges').textContent = project.challenges;
+            document.getElementById('project-duration').textContent = project.duration;
+            document.getElementById('project-role').textContent = project.role;
+            document.getElementById('project-team').textContent = project.team;
+            
+            const techHtml = project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
+            document.getElementById('project-tech').innerHTML = techHtml;
+            
+            document.title = `${project.title} - Personal Website`;
+        }
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                document.body.removeAttribute('data-theme');
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTheme();
+            loadProject();
+            document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
